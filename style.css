@@ -1,0 +1,23 @@
+/*font-family: 'Oswald', sans-serif;
+*/
+body{
+    background:#F6F6F4;
+}
+.navbarImg{
+    width:30px;
+    height:30px;
+    object-fit:cover;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+}
+.rightNavbar a{
+    text-decoration:none;
+}
+.category{
+    list-style:none;
+    font-size: 20px;
+    text-transform:capitalize;
+}
