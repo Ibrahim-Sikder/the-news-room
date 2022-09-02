@@ -21,3 +21,28 @@ body{
     font-size: 20px;
     text-transform:capitalize;
 }
+.authorImg{
+    width:40px;
+    border-radius:100%;
+    -webkit-border-radius:100%;
+    -moz-border-radius:100%;
+    -ms-border-radius:100%;
+    -o-border-radius:100%;
+}
+.authorPadding{
+    padding-left:30px;
+}
+.smallPadding{
+    padding-left:70px;
+    margin-top:-60px;
+}
+
+.thumnailFlex{
+    display:flex;
+    justify-content: space-around;
+    
+}
+.icon{
+    color:blue;
+    font-size:25px;
+}
