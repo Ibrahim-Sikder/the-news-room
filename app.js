@@ -6,13 +6,14 @@ const categoriesLoad = () =>{
 
 const displayCategories = singleCategory => {
     //  console.log(singleCategory)
+
     const categoryContainer = document.getElementById('categorie-container')
        singleCategory.forEach(category => {
+        // console.log(category)
         const categoryList = document.createElement('ul');
         categoryList.classList.add('d-flex');
         categoryList.innerHTML=`
         <li class="category">${category.category_name}</li>
-        
         
         `
         categoryContainer.appendChild(categoryList)
@@ -23,3 +24,45 @@ const displayCategories = singleCategory => {
 
 
 categoriesLoad()
+
+
+
+
+
+const loadThumnail = () =>{
+    fetch(`https://openapi.programming-hero.com/api/news/category/01`)
+.then(res => res.json())
+.then(data => displayThumnail(data.data))
+    
+}
+
+const displayThumnail = singleThumnail  => {
+    const thmnailcontainer = document.getElementById('thumnailImg')
+    singleThumnail.forEach(thumnail => {
+        console.log(thumnail)
+        const thumnailDiv = document.createElement('div') ;
+        thumnailDiv.classList.add('card');
+        thumnailDiv.innerHTML=`
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="${thumnail.image_url}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">${thumnail.title}</h5>
+                  <p class="card-text">${thumnail.details.slice(0, 200)}</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          
+        
+        
+        `
+        thmnailcontainer.appendChild(thumnailDiv)
+
+    });
+
+}
+
+loadThumnail();
