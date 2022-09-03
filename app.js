@@ -13,7 +13,7 @@ const displayCategories = singleCategory => {
         const categoryList = document.createElement('ul');
         categoryList.classList.add('d-flex');
         categoryList.innerHTML=`
-        <li onclick="loadThumnail()" class="category">${category.category_name}</li>
+        <li onclick="newsThumnail(data.category_id)" class="category">${category.category_name}</li>
         
         `
         categoryContainer.appendChild(categoryList)
@@ -29,18 +29,18 @@ categoriesLoad()
 
 
 
-const loadThumnail = () =>{
+const newsThumnail = () =>{
     fetch(`https://openapi.programming-hero.com/api/news/category/01`)
 .then(res => res.json())
-.then(data => displayThumnail(data.data))
-
+.then(data => displayNewsThumnail(data.data))
+.catch(error => console.log(error));
     
 }
 
-const displayThumnail = singleThumnail  => {
+const displayNewsThumnail = singleThumnail  => {
     const thmnailcontainer = document.getElementById('thumnailImg')
     singleThumnail.forEach(thumnail => {
-        //  console.log(thumnail)
+          console.log(thumnail)
         const thumnailDiv = document.createElement('div') ;
         thumnailDiv.classList.add('card');
         thumnailDiv.classList.add('mb-3');
@@ -106,7 +106,7 @@ const displayThumnail = singleThumnail  => {
 
 
 
-loadThumnail();
+newsThumnail('a');
 
 // display MOdal
 const modalPlay = () =>{
