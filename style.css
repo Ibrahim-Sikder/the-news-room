@@ -2,6 +2,7 @@
 */
 body{
     background:#F6F6F4;
+    overflow-x: hidden;
 }
 .navbarImg{
     width:30px;

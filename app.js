@@ -6,41 +6,49 @@ const categoriesLoad = () =>{
 
 const displayCategories = singleCategory => {
     //  console.log(singleCategory)
-
+    // Loader Spinner 
+    
     const categoryContainer = document.getElementById('categorie-container')
        singleCategory.forEach(category => {
         // console.log(category)
         const categoryList = document.createElement('ul');
         categoryList.classList.add('d-flex');
         categoryList.innerHTML=`
-        <li onclick="newsThumnail(data.category_id)" class="category">${category.category_name}</li>
+        <li onclick="toggleSpinner(true), newsThumnail('${category.category_id}')" class="category">${category.category_name}</li>
         
-        `
+        ` 
+       
         categoryContainer.appendChild(categoryList)
-
+        
         
        })
+       
 }
+
 
 
 categoriesLoad()
 
 
 
+//  thumnail news
 
-
-const newsThumnail = () =>{
-    fetch(`https://openapi.programming-hero.com/api/news/category/01`)
-.then(res => res.json())
-.then(data => displayNewsThumnail(data.data))
-.catch(error => console.log(error));
+const newsThumnail = (id) =>{
+   
+    const url = `https://openapi.programming-hero.com/api/news/category/${id}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayNewsThumnail(data.data))
     
 }
 
-const displayNewsThumnail = singleThumnail  => {
-    const thmnailcontainer = document.getElementById('thumnailImg')
+
+const displayNewsThumnail = (singleThumnail)  => {
+    console.log(singleThumnail)
+    const thumnailContainer = document.getElementById('thumnailImg')
+    thumnailContainer.innerHTML='';
     singleThumnail.forEach(thumnail => {
-          console.log(thumnail)
+          
         const thumnailDiv = document.createElement('div') ;
         thumnailDiv.classList.add('card');
         thumnailDiv.classList.add('mb-3');
@@ -94,19 +102,35 @@ const displayNewsThumnail = singleThumnail  => {
         
         
         `
-        thmnailcontainer.appendChild(thumnailDiv)
-       
+        thumnailContainer.appendChild(thumnailDiv)
+        toggleSpinner(false)
         
     });
    
 
 }
 
+newsThumnail();
+
+// loader spinner 
+const toggleSpinner = isLoading =>{
+    const loaderSection = document.getElementById('loader');
+    if(isLoading){
+        loaderSection.classList.remove('d-none')
+    }else{
+        loaderSection.classList.add('d-none')
+    }
+}
 
 
 
 
-newsThumnail('a');
+// No found category 
+// if(singleThumnail.length === 0 ){
+//     singleThumnail.classList.Add=('d-none')
+// }else{
+//     singleThumnail.classList.remove('d-none')
+// }
 
 // display MOdal
 const modalPlay = () =>{
@@ -118,8 +142,8 @@ const modalPlay = () =>{
 }
 
 const displayModal = modal =>{
+   console.log(modal)
    
-    
     const modalContainer = document.getElementById('staticBackdrop');
    modal.forEach(singleModal =>{
     const modalDiv = document.createElement('div');
@@ -128,14 +152,14 @@ const displayModal = modal =>{
     modalDiv.innerHTML= `
     <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+      <h5 class="modal-title" id="staticBackdropLabel">${singleModal.title}</h5>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
       <div class="card mb-3">
         <img  src="${singleModal.thumbnail_url}" class=" modalImg card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">${singleModal.title}</h5>
+          <h5 class="card-title">${singleModal.author.name}</h5>
           <p class="card-text">${singleModal.details}</p>
           <p class="card-text">${singleModal.details.slice(0, 200)}</p>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
@@ -159,16 +183,10 @@ const displayModal = modal =>{
     `
     modalContainer.appendChild(modalDiv);
    
-
-    singleModal.slice(0, 1)
    })
-   
 
    
-
 }
 
-
-
-
 modalPlay()
+
