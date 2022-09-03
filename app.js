@@ -192,27 +192,3 @@ const displayShowDetails = details =>{
 
 showDetails()
 
-// Sort by view 
-
-// const sortView = () =>{
-//     const url = `https://openapi.programming-hero.com/api/news/category/01`
-//     fetch(url)
-//     .then(res => res.json())
-//     .then(data => displaySortView(data.data))
-//     .catch(error => console.log(error))
-    
-// }
-
-// const displaySortView = sortNews => {
-//     console.log(sortNews)
-    
-// document.getElementById('sortByView').addEventListener('click', function(){
-//    const shortVirews = document.getElementById('ShowFoundItems');
-//    shortVirews.innerText = `${sortNews.sort()} Founds news `
-//     console.log("hello")
-   
-    
-// })
-   
-
-// }
