@@ -39,6 +39,11 @@ body{
     margin-top:-60px;
 }
 
+
+#categorie-container{
+    display:flex;
+    flex-wrap:wrap;
+}
 .thumnailFlex{
     display:flex;
     justify-content: space-around;
