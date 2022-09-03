@@ -42,7 +42,7 @@
     </section>
     <!--Form sectin-->
    <section class="container">
-    <input class="form-control py-3 mt-4" type="text" value="4 items found for category moment ">
+    <input id="ShowFoundItems" class="form-control py-3 mt-4" type="text" value = "4 Items news found">
    </section>
 <!--Spinner section-->
    <section id="loader" class="spinner d-none">
@@ -58,10 +58,10 @@
     <div class="container d-md-flex text-center justify-content-between mt-4 mb-5">
         <div class="sort">
             <small>Sort By View :</small>
-            <button class="btn btn-white ">Deafault </button>
+            <button id="sortByView" class="btn bg-white ">Deafault <span><i class="fa-solid fa-angle-down"></i></span></button>
         </div>
-        <div class="todayPick">
-            <a href="" class="btn btn-primary"> Today's Pick </a>
+        <div class="todayPick mt-3">
+            <a href="" class="btn btn-primary mx-3"> Today's Pick </a>
             <a href="" class="btn btn-white border-primary"> Today's Pick </a>
         </div>
     </div>

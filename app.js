@@ -2,6 +2,7 @@ const categoriesLoad = () =>{
     fetch(`https://openapi.programming-hero.com/api/news/categories`)
     .then(res => res.json())
     .then(data => displayCategories(data.data.news_category))
+    .catch(error => console.log(error))
 }
 
 const displayCategories = singleCategory => {
@@ -39,16 +40,18 @@ const newsThumnail = (id) =>{
     fetch(url)
     .then(res => res.json())
     .then(data => displayNewsThumnail(data.data))
+    .catch(error => console.log(error))
     
 }
 
 
 const displayNewsThumnail = (singleThumnail)  => {
-    console.log(singleThumnail)
+    //  console.log(singleThumnail)
+    
     const thumnailContainer = document.getElementById('thumnailImg')
     thumnailContainer.innerHTML='';
     singleThumnail.forEach(thumnail => {
-          
+        
         const thumnailDiv = document.createElement('div') ;
         thumnailDiv.classList.add('card');
         thumnailDiv.classList.add('mb-3');
@@ -86,26 +89,26 @@ const displayNewsThumnail = (singleThumnail)  => {
                         </div>
 
                         <div>
-                            <span class="icon"><i class="fa-solid fa-arrow-right"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+                            <span class="icon"><i class="fa-solid fa-arrow-right" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" ></i>
                             </span>
-                            
+
                             
                         </div>
-                        
-                    
+     
                 </div>
                 
                 </div>
               </div>
             </div>
-          
-        
-        
+
         `
+        
         thumnailContainer.appendChild(thumnailDiv)
+        
         toggleSpinner(false)
         
     });
+    
    
 
 }
@@ -133,48 +136,47 @@ const toggleSpinner = isLoading =>{
 // }
 
 // display MOdal
-const modalPlay = () =>{
-    fetch(`https://openapi.programming-hero.com/api/news/category/01`)
-.then(res => res.json())
-.then(data => displayModal(data.data))
-
+const showDetails = (detailsId) =>{
+    const url = `https://openapi.programming-hero.com/api/news/category/01`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayShowDetails(data.data[0]))
+    .catch(error => console.log(error))
     
 }
 
-const displayModal = modal =>{
-   console.log(modal)
+const displayShowDetails = details =>{
+   console.log(details)
    
     const modalContainer = document.getElementById('staticBackdrop');
-   modal.forEach(singleModal =>{
+   
     const modalDiv = document.createElement('div');
     modalDiv.classList.add('modal-dialog');
     modalDiv.classList.add('modal-lg');
     modalDiv.innerHTML= `
     <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="staticBackdropLabel">${singleModal.title}</h5>
+      <h5 class="modal-title" id="staticBackdropLabel">${details.title}</h5>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
       <div class="card mb-3">
-        <img  src="${singleModal.thumbnail_url}" class=" modalImg card-img-top" alt="...">
+        <img  src="${details.thumbnail_url}" class=" modalImg card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">${singleModal.author.name}</h5>
-          <p class="card-text">${singleModal.details}</p>
-          <p class="card-text">${singleModal.details.slice(0, 200)}</p>
+          <h5 class="card-title">${details.author.name}</h5>
+          <p class="card-text">${details.details}</p>
+          <p class="card-text">${details.details.slice(0, 200)}</p>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-
           </div>
-          <small>${singleModal.total_view}</small>
-          <small>${singleModal.category_id}</small>
+          <small>${details.total_view}</small>
+          <small>${details.category_id}</small>
         </div>
      
      
     <div class="modal-footer">
-    <small>${singleModal.author.name}</small>
-    <small>${singleModal.author.published_date}</small>
+    <small>${details.author.name}</small>
+    <small>${details.author.published_date}</small>
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
     </div>
   </div>
     
@@ -183,10 +185,34 @@ const displayModal = modal =>{
     `
     modalContainer.appendChild(modalDiv);
    
-   })
+
 
    
 }
 
-modalPlay()
+showDetails()
 
+// Sort by view 
+
+// const sortView = () =>{
+//     const url = `https://openapi.programming-hero.com/api/news/category/01`
+//     fetch(url)
+//     .then(res => res.json())
+//     .then(data => displaySortView(data.data))
+//     .catch(error => console.log(error))
+    
+// }
+
+// const displaySortView = sortNews => {
+//     console.log(sortNews)
+    
+// document.getElementById('sortByView').addEventListener('click', function(){
+//    const shortVirews = document.getElementById('ShowFoundItems');
+//    shortVirews.innerText = `${sortNews.sort()} Founds news `
+//     console.log("hello")
+   
+    
+// })
+   
+
+// }
