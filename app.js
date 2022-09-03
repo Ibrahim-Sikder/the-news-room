@@ -112,7 +112,7 @@ const displayNewsThumnail = (singleThumnail)  => {
 
 newsThumnail();
 
-// loader spinner 
+// Loading spinner 
 const toggleSpinner = isLoading =>{
     const loaderSection = document.getElementById('loader');
     if(isLoading){
@@ -126,7 +126,7 @@ const toggleSpinner = isLoading =>{
 
 
 // No found category 
-// if(singleThumnail.length === 0 ){
+// if(thumnail.length === 0 ){
 //     singleThumnail.classList.Add=('d-none')
 // }else{
 //     singleThumnail.classList.remove('d-none')
