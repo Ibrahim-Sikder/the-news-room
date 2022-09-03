@@ -20,6 +20,7 @@ body{
     list-style:none;
     font-size: 20px;
     text-transform:capitalize;
+    cursor:pointer
 }
 .authorImg{
     width:40px;
@@ -46,3 +47,11 @@ body{
     color:blue;
     font-size:25px;
 }
+
+/*
+Modal Img 
+*/
+.modalImg{
+    height:50%;
+}
+
